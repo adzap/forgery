@@ -8,7 +8,9 @@ describe Range do
   end
 
   it "should not take a long time when the range is huge" do
-    Timeout.timeout(1){Forgery::Extend(1234567890..12345678901234567890).random}.should_not raise_error(Timeout::Error)
+    proc {
+      Timeout.timeout(1){Forgery::Extend(1234567890..12345678901234567890).random}
+    }.should_not raise_error
   end
 
   it "should return nil for a random number from a reverse range" do

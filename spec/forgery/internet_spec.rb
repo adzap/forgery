@@ -42,7 +42,7 @@ describe Forgery::Internet do
     it 'should be 4 integers between 0 and 255 seprated by "."' do
       val = Forgery::Internet.ip_v4
       nums = val.split('.')
-      nums.should have(4).items
+      expect(nums.size).to eq(4)
       nums.each do |num|
         num.should =~ /\d{1,3}/
         num.to_i.should <= 255

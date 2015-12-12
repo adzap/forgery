@@ -30,7 +30,7 @@ describe Forgery do
 
   it "should return the rails root path as a string if Rails.root is defined" do
     Rails = Object.new
-    Rails.stub!(:root).and_return(Pathname.new('/path/from/rails/dot/root'))
+    Rails.stub(:root).and_return(Pathname.new('/path/from/rails/dot/root'))
     Forgery.rails_root.should == '/path/from/rails/dot/root'
     Object.instance_eval { remove_const(:Rails) }
   end
@@ -40,15 +40,15 @@ describe Forgery do
   end
 
   it "should not be a rails environment when there is not a rails_root" do
-    Forgery.rails?.should be_false
+    Forgery.rails?.should be false
   end
 
   it "should be a rails environment when there is a rails_root" do
-    Forgery.stub!(:rails?).and_return(true)
-    Forgery.rails?.should be_true
+    Forgery.stub(:rails?).and_return(true)
+    Forgery.rails?.should be true
   end
 
-  pending "method is deprecated and will be removed" do
+  skip "method is deprecated and will be removed" do
     it "should accept a symbol and return the appropriate forgery class" do
       Forgery(:address).should == Forgery::Address
       Forgery(:basic).should == Forgery::Basic

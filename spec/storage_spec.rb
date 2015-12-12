@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Forgery::Storage do
-  let(:file_reader) { stub(Forgery::FileReader) }
+  let(:file_reader) { double(Forgery::FileReader) }
   let(:storage) { Forgery::Storage.new(file_reader) }
 
   it "should check if the file is loaded" do
